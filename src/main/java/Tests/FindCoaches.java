@@ -1,12 +1,14 @@
 package Tests;
 
 import PageFactory.OurTeamPage;
+import org.apache.http.util.Asserts;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -54,6 +56,14 @@ public class FindCoaches extends BaseTest{
         coachPageView.getAllCoachesJavaScript();
         Assert.assertEquals("Ольга Симчак", coachPageView.getAllCoachesJavaScript());
     }
-
+    @Test
+    public void testAlertJavaScript() throws Exception {
+        coachPageView = new OurTeamPage(driver);
+        coachPageView.goToCoachPage();
+        coachPageView.callJavaScript();
+        assertEquals("Hello world", coachPageView.getTextOnAlertButton());
+        //coachPageView.getTextOnAlertButton();
+        coachPageView.pressOnAlertButton();
+    }
 }
 

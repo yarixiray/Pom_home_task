@@ -1,10 +1,8 @@
 package PageFactory;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.security.Credentials;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -52,6 +50,13 @@ public class OurTeamPage {
     public void callJavaScript(){
         ((JavascriptExecutor)driver).executeScript("alert('Hello world');");
     }
+    public void pressOnAlertButton() {
+        driver.switchTo().alert().accept();
+    }
+    public String getTextOnAlertButton() {
+        return  driver.switchTo().alert().getText();
+    }
+
     public String getAllCoachesJavaScript(){
         WebElement w = (WebElement) ((JavascriptExecutor)driver).executeScript("return document.getElementsByClassName('name')[0];");
         return w.getText();
