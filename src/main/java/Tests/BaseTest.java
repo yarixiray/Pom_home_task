@@ -12,7 +12,7 @@ public class BaseTest {
     @Before
     public void setUp(){
         driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
 
     @After

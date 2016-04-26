@@ -1,11 +1,15 @@
 package PageFactory;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +39,24 @@ public class OurTeamPage {
     private List<String> getAllCoachNames() {
         List<String> list = new ArrayList<String>();
         List<WebElement> allCoachNames = driver.findElements(nameFieldInsideCard);
+        System.out.println(allCoachNames.size());
         for(WebElement element : allCoachNames){
             list.add(element.getText());
         }
-        return list;
+        return getAllCoachNames();
     }
+    public void awaitUntilNameTextHasText(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver,20);
+        webDriverWait.until(ExpectedConditions.alertIsPresent());
+    }
+    public void callJavaScript(){
+        ((JavascriptExecutor)driver).executeScript("alert('Hello world');");
+    }
+    public String getAllCoachesJavaScript(){
+        WebElement w = (WebElement) ((JavascriptExecutor)driver).executeScript("return document.getElementsByClassName('name')[0];");
+        return w.getText();
+        }
+
 }
 
 

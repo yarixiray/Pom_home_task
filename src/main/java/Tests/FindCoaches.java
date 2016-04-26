@@ -1,6 +1,7 @@
 package Tests;
 
 import PageFactory.OurTeamPage;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ public class FindCoaches extends BaseTest{
     public void checkThatBokhanIsPresented() throws Exception {
         coachPageView = new OurTeamPage(driver);
         coachPageView.goToCoachPage();
-        assertTrue(coachPageView.checkThatPersonIsPresented("Евгения Бохан"));
+        coachPageView.checkThatPersonIsPresented("Евгения Бохан");
     }
 
     @Test
@@ -33,5 +34,26 @@ public class FindCoaches extends BaseTest{
         coachPageView.goToCoachPage();
         assertFalse(coachPageView.checkThatPersonIsPresented("Артем Карпов"));
     }
+    @Test
+    public void awaitNameFieldHasText() throws Exception {
+        coachPageView = new OurTeamPage(driver);
+        coachPageView.goToCoachPage();
+        coachPageView.awaitUntilNameTextHasText();
+    }
+    @Test
+    public void callJsAlert() throws Exception {
+        coachPageView = new OurTeamPage(driver);
+        coachPageView.goToCoachPage();
+        coachPageView.callJavaScript();
+        coachPageView.awaitUntilNameTextHasText();
+    }
+    @Test
+    public void callListJavaScript() throws Exception {
+        coachPageView = new OurTeamPage(driver);
+        coachPageView.goToCoachPage();
+        coachPageView.getAllCoachesJavaScript();
+        Assert.assertEquals("Ольга Симчак", coachPageView.getAllCoachesJavaScript());
+    }
+
 }
 
