@@ -11,5 +11,9 @@ public class CoachPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    
+    public void checkCoach() {
+
+    }
+
+
 }

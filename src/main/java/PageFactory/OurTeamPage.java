@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static PageFactory.Page.driver;
@@ -32,12 +33,12 @@ public class OurTeamPage {
     }
 
     private List<String> getAllCoachNames() {
+        List<String> list = new ArrayList<String>();
         List<WebElement> allCoachNames = driver.findElements(nameFieldInsideCard);
-        for(WebElement coach:allCoachNames){
-            String all=coach.getText();
-            System.out.println(all);
+        for(WebElement element : allCoachNames){
+            list.add(element.getText());
         }
-        return getAllCoachNames();
+        return list;
     }
 }
 
